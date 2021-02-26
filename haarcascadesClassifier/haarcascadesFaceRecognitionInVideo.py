@@ -47,3 +47,4 @@ while True:
 
 # Releasing the video capture object
 webcam.release()
+cv2.destroyAllWindows()

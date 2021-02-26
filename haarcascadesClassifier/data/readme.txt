@@ -1,0 +1,1 @@
+All the data created using the program haarcascadesCollectingTrainingData.py will be stored in this folder
