@@ -22,9 +22,11 @@ trained_face_data = cv2.CascadeClassifier(
     './haarcascade_frontalface_default.xml')
 
 # Initialising variables
-skip = 0
-face_data = []
+skip = 0  # skip is used to count each frame as we need to store only the face from every tenth frame
+face_data = []  # face_data will be used to store all our face sections
+# this is the location where our .npy file containing the data will be stored
 dataset_path = './data/'
+# this is to give our .npy file a suitable name
 file_name = input('Enter name of the person: ')
 
 while True:
@@ -57,7 +59,7 @@ while True:
         # Extracting Region of Interest (Cropping out the required face)
         # We will also provide the face some padding so as to get a better region of interest
         offset = 10
-        face_section = frame[y-offset:y+h+offset, x-offset:x+w+offset]
+        face_section = grayscaled_img[y-offset:y+h+offset, x-offset:x+w+offset]
         # Resizing the face section cropped out to get a face image of constant size for each case
         face_section = cv2.resize(face_section, (100, 100))
 
@@ -101,3 +103,7 @@ print('Data successfully saved at '+dataset_path+file_name+'.npy')
 # Releasing the video capture object
 webcam.release()
 cv2.destroyAllWindows()
+
+####### NOTE #######
+# If instead of grayscale images you are having colored images in training data then change
+# grayscaled_img to frame in line 127
